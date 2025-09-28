@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>original</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+  </head>
+  <body>
+    <h2>React Button</h2>
+    <div id="root"></div>
+    <p id="react-count">DOM updates: 0</p>
+
+    <h2>Vanilla JS Button</h2>
+    <div id="root1"></div>
+    <p id="vanilla-count">DOM updates: 0</p>
+
+    <script>
+      let vanillaCount = 0
+      let button1 = document.createElement("button");
+      button1.textContent = "Click Me";
+      button1.addEventListener("click", () => {
+        document.title = "Vanilla Js";
+        vanillaCount++
+        document.getElementById("vanilla-count").textContent =
+        "DOM updates: " + vanillaCount
+      });
+      document.getElementById("root1").appendChild(button1);
+
+      /////////////////////////////////////
+     let reactCount = 0;
+
+  function renderButton() {
+    let button = React.createElement(
+      "button",
+      {
+        onClick: () => {
+          reactCount++
+          document.title = "Title Changed";
+          document.getElementById("react-count").textContent =
+            "DOM updates: " + reactCount;
+        },
+      },
+      "Click Me (React)"
+    );
+    return button;
+  }
+
+  let root = ReactDOM.createRoot(document.getElementById("root"));
+  root.render(renderButton())
+    </script>
+  </body>
+</html>
